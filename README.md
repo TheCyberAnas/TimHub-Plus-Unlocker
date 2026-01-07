@@ -23,6 +23,8 @@ Benvenuti nel repository ufficiale di **TheCyberAnas**. Questo progetto document
 | `SSH-BruteCheck.bat` | Monitora in tempo reale l'apertura della porta 22 durante i tentativi di sblocco. |
 | `TimHub-Unlocker-Pro.bat` | Tenta l'attivazione remota del servizio Dropbear (SSH). |
 
+Firmware identificato: AGTHF_1.0.1. Stato: In attesa di decriptazione.
+
 ## ⚠️ Disclaimer
 Questo progetto è creato da **TheCyberAnas** a scopo puramente educativo e di studio sul networking. Non mi assumo responsabilità per danni causati ai dispositivi.
 
