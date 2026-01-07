@@ -1,17 +1,30 @@
-# 🔓 TimHub Plus Sbloccante
-Benvenuti nel laboratorio di **TheCyberAnas**. Questo progetto è dedicato allo studio e allo sblocco del router **Technicolor DGA4331 (TIM HUB+)**.
+# 🔓 TimHub Plus Sbloccante (DGA4331)
 
-### 🛠️ Stato del Progetto: In Ricerca
-Attualmente il tool include lo script `RouterScout.bat` per analizzare lo stato delle porte del router.
+Benvenuti nel repository ufficiale di **TheCyberAnas**. Questo progetto documenta la ricerca di vulnerabilità e le procedure di sblocco per il router **Technicolor DGA4331 (TIM HUB+)**.
 
-- [x] Creazione ambiente di test
-- [x] Script di ricognizione porte
-- [ ] Ricerca vulnerabilità Firmware (In corso...)
-- [ ] Script di sblocco automatico (Coming Soon)
+## 🛡️ Specifiche del Bersaglio
+- **Modello:** Technicolor MediaAccess DGA4331
+- **Versione Firmware Rilevata:** `AGTHF_1.0.1` (Vulnerabile)
+- **Stato Crittografia:** AES-CBC (CIPHERKEY=GW)
+- **MAC Prefix:** `D4:35:1D`
 
-### ⚠️ Attenzione
-Se lo script riporta **Port 22 (SSH): False**, significa che il router ha il firmware originale bloccato. Stiamo lavorando per trovare l'exploit compatibile.
+## 📊 Roadmap del Progetto
+- [x] **Ricognizione:** Identificazione modello e versione firmware tramite `RouterDumper.bat`.
+- [x] **Scansione Porte:** Verifica stato porta 22 (SSH) -> *Stato attuale: CHIUSA (False)*.
+- [x] **Analisi Payload:** Recupero file `config.bin` per analisi offline.
+- [ ] **Fase di Exploit:** Iniezione tramite manipolazione del file di configurazione (In corso...).
+- [ ] **Accesso Root:** Apertura permanente della shell SSH.
+
+## 🛠️ Tool inclusi
+| File | Descrizione |
+| :--- | :--- |
+| `RouterScout.bat` | Analizza se il router è raggiungibile e se le porte critiche sono aperte. |
+| `RouterDumper.bat` | Estrae un report tecnico dettagliato (MAC, TTL, HTTP Headers). |
+| `SSH-BruteCheck.bat` | Monitora in tempo reale l'apertura della porta 22 durante i tentativi di sblocco. |
+| `TimHub-Unlocker-Pro.bat` | Tenta l'attivazione remota del servizio Dropbear (SSH). |
+
+## ⚠️ Disclaimer
+Questo progetto è creato da **TheCyberAnas** a scopo puramente educativo e di studio sul networking. Non mi assumo responsabilità per danni causati ai dispositivi.
 
 ---
-📱 Segui i progressi su TikTok: [@thecyberanas](https://www.tiktok.com/@thecyberanas)
-🚀 Progetto Open Source per scopi educativi.
+📱 **Segui l'evoluzione del progetto su TikTok:** [@thecyberanas](https://www.tiktok.com/@thecyberanas)
