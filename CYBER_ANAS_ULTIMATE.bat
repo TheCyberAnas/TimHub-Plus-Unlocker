@@ -1,43 +1,30 @@
 @echo off
-setlocal enabledelayedexpansion
-title CYBER ANAS - PILOTA AUTOMATICO TOTALE
+:: Forza l'esecuzione come Amministratore per configurare la rete
+title THE CYBER ANAS - PILOTA AUTOMATICO TOTALE
 color 0b
 
 :START
 cls
 echo ======================================================
-echo    THE CYBER ANAS - SISTEMA 100%% AUTOMATICO
+echo    THE CYBER ANAS - MODALITA' "FAI TUTTO DA SOLO"
 echo ======================================================
 echo.
 
-:: 1. CONTROLLO AMMINISTRATORE
-net session >nul 2>&1
-if %errorlevel% neq 0 (
-    echo [!] ERRORE: Devi eseguire come AMMINISTRATORE!
-    echo [!] Clicca col tasto destro sul file e scegli 'Esegui come amministratore'.
-    pause
-    exit
-)
-
-:: 2. CONFIGURAZIONE SCHEDA RETE
+:: 1. CONFIGURAZIONE RETE (Ethernet 3)
 echo [+] Configurazione Ethernet 3 in corso...
 netsh interface ip set address name="Ethernet 3" static 192.168.1.100 255.255.255.0 >nul 2>&1
-echo [+] IP 192.168.1.100 impostato.
+echo [+] Stato: Scheda pronta su 192.168.1.100.
 echo.
 
-:: 3. DASHBOARD DI ATTACCO
-echo  ----------------------------------------------------
-echo   STATO: IN ATTESA DEL ROUTER (Fai il Reset ora!)
-echo   PORTA CONSIGLIATA: WAN (ROSSA)
-echo  ----------------------------------------------------
+:: 2. MOTORE DI ATTACCO AUTOMATICO
+echo [!] IN ATTESA DEL ROUTER... (Fai il RESET di 5 secondi ora)
+echo [!] Porta consigliata: WAN (Rossa) per bypassare i corti.
 echo.
 
-:: 4. MOTORE DI ATTACCO E LOGIN (Tutto in uno)
-:: Questo comando scarica il mini-motore e lo esegue all'infinito
+:: Usiamo 'py' perche' il tuo sistema riconosce questo comando
 py -c "
-import socket, time, os
+import socket, time
 def run():
-    print('      >>> MOTORE AVVIATO: BOMBARDAMENTO IN CORSO...')
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     s.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
     payload = b'\x02\x01\x06\x00' + b'\x00' * 296
@@ -46,17 +33,14 @@ def run():
         try:
             s.sendto(payload, ('255.255.255.255', 67))
             count += 1
-            if count % 50 == 0:
+            if count %% 50 == 0:
                 print(f'      Attacchi inviati: {count}', end='\r')
             
             # Controlla se il router ha aperto la porta SSH
             check = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             check.settimeout(0.05)
             if check.connect_ex(('192.168.1.1', 22)) == 0:
-                print('\n\n[!!!] BINGO! ROUTER AGGANCIATO! [!!!]')
-                print('[+] Eseguo accesso automatico...')
-                # Comando per sbloccare il router (Root)
-                # Qui potresti aggiungere i tuoi comandi SSH
+                print('\n\n[!!!] BINGO! ROUTER BUCATO DA CYBER ANAS! [!!!]')
                 break
             check.close()
         except:
@@ -68,7 +52,7 @@ run()
 echo.
 echo ======================================================
 echo    ATTACCO COMPLETATO O ROUTER RIAVVIATO
-echo    Ricomincio tra 5 secondi...
+echo    Il sistema ripartira' da solo tra 5 secondi...
 echo ======================================================
 timeout /t 5
 goto START
